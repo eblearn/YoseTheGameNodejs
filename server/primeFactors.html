@@ -63,28 +63,42 @@
 			}
 							
 			function showDecomposition() {
-				var numberToDecompose = new Number(document.getElementById("number").value);
-				var primeFactors = "";
+				var numbers = document.getElementById("number").value;
+				var numbersToDecompose = [].concat(numbers.split(","));
 				var result = "";
-				
-				if (numberToDecompose.error === undefined) {
-					primeFactors += numberToDecompose.decomposition[0].toString();
-									
-					for (var i = 1; i < numberToDecompose.decomposition.length; i++) {
-						primeFactors += " x " + numberToDecompose.decomposition[i].toString();
-					}
-
-					result = numberToDecompose.number + " = " +  primeFactors;
-				} else if (numberToDecompose.error == "not a number") {
-					result = numberToDecompose.number + " is " + numberToDecompose.error;
-				} else if (numberToDecompose.error == "not an integer > 1") {
-					result = numberToDecompose.number + " is " + numberToDecompose.error;
-				} else {
-					result = numberToDecompose.error;
-				}
-				
 				var myDiv = document.getElementById("result");
-				myDiv.innerHTML = result;
+				var myOrderedList = document.getElementById("results");
+				
+				for (var iNumber = 0; iNumber < numbersToDecompose.length; iNumber++) {
+					
+					var numberToDecompose = new Number(numbersToDecompose[iNumber]);
+					var primeFactors = "";
+					var resultNumberDecomposition = "";
+					
+					if (numberToDecompose.error === undefined) {
+						primeFactors += numberToDecompose.decomposition[0].toString();
+										
+						for (var iFactor = 1; iFactor < numberToDecompose.decomposition.length; iFactor++) {
+							primeFactors += " x " + numberToDecompose.decomposition[iFactor].toString();
+						}
+
+						resultNumberDecomposition = numberToDecompose.number + " = " +  primeFactors;
+					} else if (numberToDecompose.error == "not a number") {
+						resultNumberDecomposition = numberToDecompose.number + " is " + numberToDecompose.error;
+					} else if (numberToDecompose.error == "not an integer > 1") {
+						resultNumberDecomposition = numberToDecompose.number + " is " + numberToDecompose.error;
+					} else {
+						resultNumberDecomposition = numberToDecompose.error;
+					}
+					
+					if (numbersToDecompose.length > 1) {
+						var item = document.createElement('li');
+						item.innerHTML = resultNumberDecomposition;
+						myOrderedList.appendChild(item);
+					} else {
+						myDiv.innerHTML = resultNumberDecomposition;
+					}
+				}
 			}
 			
 		</script> 
@@ -97,9 +111,8 @@
 			</div>
 			<input type="text" id="number">
 			<button type="button" id="go" onclick="showDecomposition();">Décomposer ...</button>
-			<div id="result">
-				
-			</div>
+			<div id="result"></div>
+			<ol id="results"></ol>
 		</div>		
    </body>
 </html>
