@@ -65,18 +65,18 @@ function serveRootFile(res) {
 	
 }
 
-function serveMinesweeper(res) {
-	
-	res.writeHeader(200, {"Content-Type": "text/html"});	
-	res.write(fs.readFileSync(__dirname + "\\minesweeper.html" ));
-	res.end();
-	
-}
-
 function servePrimeFactors(res) {
 	
 	res.writeHeader(200, {"Content-Type": "text/html"});	
 	res.write(fs.readFileSync(__dirname + "\\primeFactors.html" ));
+	res.end();
+	
+}
+
+function serveMinesweeper(res) {
+	
+	res.writeHeader(200, {"Content-Type": "text/html"});	
+	res.write(fs.readFileSync(__dirname + "\\minesweeper.html" ));
 	res.end();
 	
 }
