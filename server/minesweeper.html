@@ -5,10 +5,19 @@
 		<link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
 		
 		<script type="text/javascript">
+			function load () {
+				var myCell = document.getElementById("cell-1x3");
+				myCell.className = "lost"
+				
+				myCell = document.getElementById("cell-2x2");
+				myCell.className = "safe";
+				myCell.innerHTML = "2";
+			}
+		
 			window.onload=function(){
 				var myTable = document.getElementById("gameSurface");
 				var taille = 8
-				
+							
 				for (var ligne = 1; ligne <= taille; ligne++) {
 					var row = document.createElement('tr');
 										
