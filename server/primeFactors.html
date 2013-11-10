@@ -3,8 +3,91 @@
 	<head>
 		<title>Prime factors</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		
-		
+
+		<script type="text/javascript"> 
+			function Number(aNumber) {
+				this.number = aNumber;
+					
+				if (isAValidNumber(aNumber)) {
+					this.decomposition = decomposeNumberWithPrimeFactors(aNumber);
+				} else {
+					this.error = getErrorType(aNumber);
+				}
+			}
+
+			function decomposeNumberWithPrimeFactors(numberToDecompose) {
+				
+				var decomposition = [];
+				var factor = 2;
+					
+				while (factor <= numberToDecompose) {
+					while (numberToDecompose % factor == 0) {
+						decomposition.push(factor);
+						numberToDecompose = numberToDecompose / factor;
+					}
+					factor++;
+				}
+					
+				return decomposition;
+				
+			}
+
+			function isAValidNumber(checkNumber) {
+				return isANumber(checkNumber) && !isABigNumber(checkNumber) && isAValidInteger(checkNumber);
+			}
+
+			function isANumber(checkNumber) {
+				return !isNaN(parseFloat(checkNumber)) && isFinite(checkNumber);
+			}
+
+			function isABigNumber(checkNumber) {
+				return checkNumber > 1000000;
+			}
+			
+			function isAValidInteger(checkNumber) {
+				return checkNumber > 1;
+			}
+
+			function  getErrorType(invalidNumber) {
+				var errorType = "";
+				
+				if (!isANumber(invalidNumber)) {
+					errorType = "not a number";
+				} else if (isABigNumber(invalidNumber)) {
+					errorType = "too big number (>1e6)";
+				} else if (!isAValidInteger(invalidNumber)) {
+					errorType = "not an integer > 1";
+				}
+				
+				return errorType;
+			}
+							
+			function showDecomposition() {
+				var numberToDecompose = new Number(document.getElementById("number").value);
+				var primeFactors = "";
+				var result = "";
+				
+				if (numberToDecompose.error === undefined) {
+					primeFactors += numberToDecompose.decomposition[0].toString();
+									
+					for (var i = 1; i < numberToDecompose.decomposition.length; i++) {
+						primeFactors += " x " + numberToDecompose.decomposition[i].toString();
+					}
+
+					result = numberToDecompose.number + " = " +  primeFactors;
+				} else if (numberToDecompose.error == "not a number") {
+					result = numberToDecompose.number + " is " + numberToDecompose.error;
+				} else if (numberToDecompose.error == "not an integer > 1") {
+					result = numberToDecompose.number + " is " + numberToDecompose.error;
+				} else {
+					result = numberToDecompose.error;
+				}
+				
+				var myDiv = document.getElementById("result");
+				myDiv.innerHTML = result;
+			}
+			
+		</script> 
 	</head>
 	<body>
 		<div id="title">
@@ -13,7 +96,7 @@
 				Veuillez saisir le nombre que vous voulez décomposer en facteurs premiers ...
 			</div>
 			<input type="text" id="number">
-			<button type="button" id="go">Décomposer ...</button>
+			<button type="button" id="go" onclick="showDecomposition();">Décomposer ...</button>
 			<div id="result">
 				
 			</div>
