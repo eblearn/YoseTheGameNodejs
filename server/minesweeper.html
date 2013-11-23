@@ -5,108 +5,25 @@
 		<link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
 		
 		<script type="text/javascript">
-			function getNumberOfSurroundingBombs(grid, coordonnees) {
-				var numberOfBombs = 0;
-				var minIndexOfGrid = 0;
-				var maxIndexOfGrid = grid.length - 1;
-							
-				var startIndexOfGridRowRange = Math.max(minIndexOfGrid, parseInt(coordonnees[0]) - 2);
-				var endIndexOfGridRowRange = Math.min(maxIndexOfGrid, parseInt(coordonnees[0]));
-				var rowIndexStart = Math.max(minIndexOfGrid, parseInt(coordonnees[1]) - 2);
-				var rowIndexEnd = Math.min(maxIndexOfGrid, parseInt(coordonnees[1]));
+			function load () {
+				var myCell = document.getElementById("cell-1x3");
+				myCell.className = "lost"
 				
-				alert(startIndexOfGridRowRange.toString() + ', ' + endIndexOfGridRowRange.toString() + ', ' + rowIndexStart.toString() + ', ' + rowIndexEnd.toString());
-				
-				for (i = startIndexOfGridRowRange; i <= endIndexOfGridRowRange; i++){
-					for (j = rowIndexStart; j <= rowIndexEnd; j++){
-						if ( !(i == coordonnees[0] - 1 && j == coordonnees[1] - 1)) {
-							if (grid[i][j] == 'bomb') {
-								numberOfBombs++;
-							} 
-						}
-					}
-				}
-				
-				return numberOfBombs;
-				
-			};			
-			
-			function loadNeighbors (grid, cell) {
-				
-				var coordonnees = cell.id.substring(cell.id.indexOf("-") + 1).split("x");
-								
-				var lineIndexStart = Math.max(1, parseInt(coordonnees[0]) - 1);
-				var lineIndexEnd = Math.min(grid.length, parseInt(coordonnees[0])+ 1);
-				var colIndexStart = Math.max(1, parseInt(coordonnees[1]) - 1);
-				var colIndexEnd = Math.min(grid.length, parseInt(coordonnees[1]) + 1);
-				
-				for (cellLine = lineIndexStart; cellLine <= lineIndexEnd; cellLine++){
-					for (cellColumn = colIndexStart; cellColumn <= colIndexEnd; cellColumn++){
-						neighborCell = document.getElementById("cell-" + cellLine.toString() + 'x' + cellColumn.toString());
-						
-						if (neighborCell.className == '') {
-														
-							var numberOfSurroundingBombs = getNumberOfSurroundingBombs(grid, [cellLine, cellColumn]);
-						
-							neighborCell.className = "safe";
-							neighborCell.innerHTML = '';
-							if (numberOfSurroundingBombs > 0) {
-								neighborCell.innerHTML = numberOfSurroundingBombs.toString();
-							}
-											
-							load(grid, neighborCell);
-						}
-					}
-				}
-				
-			};
-						
-			function load (grid, cell) {
-				var coordonnees = cell.id.substring(cell.id.indexOf("-") + 1).split("x");
-				
-				if (grid[coordonnees[0] - 1][coordonnees[1] - 1] == "empty"){
-					var numberOfSurroundingBombs = getNumberOfSurroundingBombs(grid, coordonnees);
-										
-					cell.className = "safe";
-					cell.innerHTML = '';
-					if (numberOfSurroundingBombs > 0) {
-						cell.innerHTML = numberOfSurroundingBombs.toString();
-					}
-										
-					if (numberOfSurroundingBombs == 0) {
-						loadNeighbors(grid, cell);
-						loadNeighbors(grid, cell);
-					} 
-										
-				} else {
-					cell.className = "lost";
-				}
-			};
+				myCell = document.getElementById("cell-2x2");
+				myCell.className = "safe";
+				myCell.innerHTML = "2";
+			}
 		
 			window.onload=function(){
-								
 				var myTable = document.getElementById("gameSurface");
-				var grid = [['bomb', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'bomb'], ['empty', 'empty', 'bomb', 'empty'], ['empty', 'empty', 'bomb', 'empty']];
-				//var size = document.grid.length;
-				var size = grid.length;
-								
-				for (var ligne = 1; ligne <= size; ligne++) {
+				var taille = 8
+							
+				for (var ligne = 1; ligne <= taille; ligne++) {
 					var row = document.createElement('tr');
 										
-					for (var colonne = 1; colonne <= size; colonne++) {
+					for (var colonne = 1; colonne <= taille; colonne++) {
 						var cell = document.createElement('td');
 						cell.setAttribute("id", "cell-" + ligne + "x" + colonne);
-						
-						var createClickHandler = 
-							function(cell) 
-							{
-								return function() { 
-									load(grid, cell);
-									//load(document.grid, cell);
-								};
-							};
-
-						cell.onclick = createClickHandler(cell);
 						row.appendChild(cell);
 					}
 					
