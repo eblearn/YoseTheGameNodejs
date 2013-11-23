@@ -7,8 +7,10 @@ body {
 table {
 	border-spacing:0;
     border-collapse:collapse;
+	/*
 	margin-left: auto;
 	margin-right: auto;
+	*/
 	margin-top: 20px;
 }
 
@@ -16,10 +18,19 @@ td {
 	width: 20px;
 	height: 20px;
 	border: 1px solid #000000;
+	background-color: lightGray;
 }
 
 #title {
-	text-align:center;
+	/*text-align:center;*/
 	width: 100%;
+}
+
+.safe {
+	background-color: white;
+}
+
+.lost {
+	background-color: red;
 }
 
