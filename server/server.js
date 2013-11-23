@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require("path"); 
 var fs = require('fs');
-var querystring = require('querystring');
+//var querystring = require('querystring');
 var Number = require('./Number.js');
 
 var app = express();
@@ -15,12 +15,13 @@ app.get('/ping', function(req, res) {
 
 app.get('/primeFactors', function(req, res) {
 
-	var numbersToDecompose = [].concat(req.query.number);
-	var decomposedNumbers = [];
+	var decomposedNumbers;
+    var numbersToDecompose = [].concat(req.query.number);
+    decomposedNumbers = [];
 		
 	for (var i = 0; i < numbersToDecompose.length; i++) {
-		decomposedNumbers.push(new Number(numbersToDecompose[i]))
-	}
+        decomposedNumbers.push(Number(numbersToDecompose[i]))
+    }
 	
 	res.setHeader('Content-Type', 'application/json');
 	
@@ -81,5 +82,5 @@ function serveMinesweeper(res) {
 	
 }
 
-app.listen(3000);
-console.log('Listening on port 3000...');
+app.listen(3185);
+console.log('Listening on port 3185...');
