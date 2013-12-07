@@ -4,13 +4,11 @@ module.exports = function Number(aNumber) {
 	if (isValidNumber(aNumber)) {
 		this.decomposition = decomposeNumberWithPrimeFactors(aNumber);
 	} else {
-		this.error = "not a number"
+		this.error = getErrorMessage(aNumber);
 	}
-	
 }
 
 function decomposeNumberWithPrimeFactors(numberToDecompose) {
-	
 	var decomposition = [];
 	var factor = 2;
 	
@@ -29,6 +27,18 @@ function decomposeNumberWithPrimeFactors(numberToDecompose) {
 function isValidNumber(numberToValidate) {
 	if (isNaN(numberToValidate)) {
 		return false;
+	} else if (numberToValidate > 1000000) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function getErrorMessage(invalidNumber) {
+	if (isNaN(invalidNumber)) {
+		return "not a number";
+	} else if (invalidNumber > 1000000) {
+		return "too big number (>1e6)";
 	} else {
 		return true;
 	}
