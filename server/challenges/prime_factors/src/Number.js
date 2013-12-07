@@ -13,12 +13,16 @@ function decomposeNumberWithPrimeFactors(numberToDecompose) {
 	
 	var decomposition = [];
 	var factor = 2;
+	
+	while (factor <= numberToDecompose) {
+		while (numberToDecompose % factor == 0) {
+			decomposition.push(factor);
+			numberToDecompose = numberToDecompose / factor;
+		}
 		
-	while (numberToDecompose % factor == 0) {
-		decomposition.push(factor);
-		numberToDecompose = numberToDecompose / factor;
+		factor++;
 	}
-		
+			
 	return decomposition;
 }
 
