@@ -1,6 +1,12 @@
 module.exports = function Number(aNumber) {
 	this.number = aNumber;
-	this.decomposition = decomposeNumberWithPrimeFactors(aNumber);
+	
+	if (isValidNumber(aNumber)) {
+		this.decomposition = decomposeNumberWithPrimeFactors(aNumber);
+	} else {
+		this.error = "not a number"
+	}
+	
 }
 
 function decomposeNumberWithPrimeFactors(numberToDecompose) {
@@ -14,4 +20,12 @@ function decomposeNumberWithPrimeFactors(numberToDecompose) {
 	}
 		
 	return decomposition;
+}
+
+function isValidNumber(numberToValidate) {
+	if (isNaN(numberToValidate)) {
+		return false;
+	} else {
+		return true;
+	}
 }
