@@ -11,4 +11,8 @@ server.get('/', function(req, res) {
 	res.sendfile(aPath);
 });
 
+server.get('/primeFactors', function(req, res) {
+	require('../challenges/prime_factors/prime_factors.endpoint')(req, res);
+});
+
 module.exports = server;
