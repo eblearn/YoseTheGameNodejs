@@ -5,8 +5,7 @@
 		<script type="text/javascript">
 				
 			window.onload=function(){
-				//document.grid = [['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'bomb' , 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty']];
-				//
+				//document.grid = [['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'bomb' , 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'bomb', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'bomb', 'empty', 'bomb', 'empty']];
 				buildGameSurface();
 			};
 			
@@ -51,9 +50,9 @@
 			
 			function getNumberOfNeighborBombs(gridRow, gridColumn) {
 				var minIndexRow = Math.max(0, gridRow - 1);
-				var maxIndexRow = Math.min(document.gridSize, gridRow + 1);
+				var maxIndexRow = Math.min(document.gridSize - 1, gridRow + 1);
 				var minIndexColumn = Math.max(0, gridColumn - 1);
-				var maxIndexColumn = Math.min(document.gridSize, gridColumn + 1);
+				var maxIndexColumn = Math.min(document.gridSize - 1, gridColumn + 1);
 				var numberOfNeighborBombs = "";
 				var numberOfBombs = 0;
 				
