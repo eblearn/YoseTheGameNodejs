@@ -18,16 +18,16 @@
 			}
 			
 			function displayNumber(number) {
-				var result = document.getElementById("result");
+				var resultDiv = document.getElementById("result");
 				var primeFactors = "";
 				
-				primeFactors = number.decomposition[0];
+				primeFactors = number.decomposition[0].toString();
 				
 				for(i = 1; i < number.decomposition.length; i++) {
-					primeFactors += " x " + number.decomposition[i];
+					primeFactors += " x " + number.decomposition[i].toString();
 				}
 								
-				result.innerHTML = number.number + " = " + primeFactors;
+				resultDiv.innerHTML = number.number.toString() + " = " + primeFactors;
 			}
 		</script>
 	</head>
