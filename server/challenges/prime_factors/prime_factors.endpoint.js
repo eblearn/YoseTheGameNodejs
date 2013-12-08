@@ -2,7 +2,7 @@ var http = require('http');
 var url = require('url');
 var Number = require('./src/Number');
 
-var pingResponse = function(req, res) {
+var primeFactorResponse = function(req, res) {
 	var numbers = [].concat(req.query.number);
 	var decomposedNumbers = []
 	
@@ -20,4 +20,4 @@ var pingResponse = function(req, res) {
     
  };
 
-module.exports = pingResponse;
+module.exports = primeFactorResponse;
