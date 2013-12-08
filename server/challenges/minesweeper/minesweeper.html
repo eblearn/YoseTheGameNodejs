@@ -16,7 +16,7 @@
 					
 					for (columnIndex = 1; columnIndex <= 8; columnIndex++) {
 						var cell = document.createElement("td");	
-						cell.class = "cell" + rowIndex.toString() + "x" + columnIndex.toString();
+						cell.id = "cell-" + rowIndex.toString() + "x" + columnIndex.toString();
 						row.appendChild(cell);
 					}
 				}
