@@ -6,13 +6,14 @@
 				
 			window.onload=function(){
 				//document.grid = [['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'bomb' , 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty']];
-				document.gridSize = document.grid.length;
+				//
 				buildGameSurface();
 			};
 			
 			function buildGameSurface() {
 				var gameSurface = document.getElementById("gameSurface");
-								
+				document.gridSize = document.grid.length;
+				
 				for (rowIndex = 1; rowIndex <= document.gridSize; rowIndex++) {
 					var row = document.createElement("tr");	
 					
