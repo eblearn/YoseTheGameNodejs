@@ -26,8 +26,9 @@
 				for(i = 1; i < number.decomposition.length; i++) {
 					primeFactors += " x " + number.decomposition[i].toString();
 				}
-								
-				resultDiv.innerHTML = number.number.toString() + " = " + primeFactors;
+				
+				var displayedResult = number.number.toString() + " = " + primeFactors;
+				resultDiv.innerHTML = displayedResult;
 			}
 		</script>
 	</head>
