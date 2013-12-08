@@ -11,7 +11,7 @@
 			
 			function buildGameSurface() {
 				var gameSurface = document.getElementById("gameSurface");
-				document.gridSize = 8;
+				document.gridSize = document.grid.length;
 				
 				for (rowIndex = 1; rowIndex <= document.gridSize; rowIndex++) {
 					var row = document.createElement("tr");	
