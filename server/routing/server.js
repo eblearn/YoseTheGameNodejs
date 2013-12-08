@@ -20,4 +20,9 @@ server.get('/primeFactors/ui', function(req, res) {
 	res.sendfile(aPath);
 });
 
+server.get('/minesweeper', function(req, res) {
+	var aPath = path.resolve (__dirname, '../challenges/minesweeper/minesweeper.html');
+	res.sendfile(aPath);
+});
+
 module.exports = server;

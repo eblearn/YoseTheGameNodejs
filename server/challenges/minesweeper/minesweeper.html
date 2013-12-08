@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Minesweeper</title>
+		<script type="text/javascript">
+			
+			window.onload=function(){
+				buildGameSurface();
+			};
+			
+			function buildGameSurface() {
+				var gameSurface = document.getElementById("gameSurface");
+				
+				for (rowIndex = 1; rowIndex <= 8; rowIndex++) {
+					var row = document.createElement("tr");	
+					
+					for (columnIndex = 1; columnIndex <= 8; columnIndex++) {
+						var cell = document.createElement("td");	
+						cell.class = "cell" + rowIndex.toString() + "x" + columnIndex.toString();
+						row.appendChild(cell);
+					}
+				}
+			}
+		</script>
+	</head>
+    <body>
+		<div id="title">Minesweeper</div>
+		<table id="gameSurface">
+			
+		</table>
+	</body>
+</html>
