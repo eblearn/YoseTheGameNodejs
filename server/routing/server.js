@@ -15,4 +15,9 @@ server.get('/primeFactors', function(req, res) {
 	require('../challenges/prime_factors/prime_factors.endpoint')(req, res);
 });
 
+server.get('/primeFactors/ui', function(req, res) {
+	var aPath = path.resolve (__dirname, '../challenges/prime_factors/prime_factors.html');
+	res.sendfile(aPath);
+});
+
 module.exports = server;
