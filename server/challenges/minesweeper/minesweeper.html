@@ -37,10 +37,10 @@
 				var gridColumn = coordinates[1] - 1;
 				
 				if (document.grid[gridRow][gridColumn] == "empty") {
-					this.class = "safe";
+					this.className = "safe";
 					this.style.backgroundColor  = "#FFFFFF";
 				} else {
-					this.class = "lost";
+					this.className = "lost";
 					this.style.backgroundColor  = "#FF0000";
 				}
 			}
