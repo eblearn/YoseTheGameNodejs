@@ -11,7 +11,13 @@ var pingResponse = function(req, res) {
 	}
 	
 	res.setHeader('Content-Type', 'application/json');
-    res.send(decomposedNumbers);
+	
+	if (numbers.length > 1) {
+		res.send(decomposedNumbers);
+	} else {
+		res.send(decomposedNumbers[0]);
+	}
+    
  };
 
 module.exports = pingResponse;
