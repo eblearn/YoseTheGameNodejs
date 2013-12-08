@@ -3,9 +3,15 @@ var url = require('url');
 var Number = require('./src/Number');
 
 var pingResponse = function(req, res) {
-	var number = req.query.number;
+	var numbers = [].concat(req.query.number);
+	var decomposedNumbers = []
+	
+	for (i=0; i < numbers.length; i++) {
+		decomposedNumbers.push(new Number(numbers[i]))
+	}
+	
 	res.setHeader('Content-Type', 'application/json');
-    res.send(new Number(number));
+    res.send(decomposedNumbers);
  };
 
 module.exports = pingResponse;
