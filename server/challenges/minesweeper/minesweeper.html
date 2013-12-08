@@ -6,6 +6,7 @@
 				
 			window.onload=function(){
 				buildGameSurface();
+				document.grid = [['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'bomb' , 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'], ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty']];
 			};
 			
 			function buildGameSurface() {
@@ -17,7 +18,13 @@
 					for (columnIndex = 1; columnIndex <= 8; columnIndex++) {
 						var cell = document.createElement("td");	
 						cell.id = "cell-" + rowIndex.toString() + "x" + columnIndex.toString();
+						cell.style.backgroundColor  = "#D3D3D3";
+						cell.style.width = "15px";
+						cell.style.height = "15px";
+						cell.style.border = "1px solid #000000";
+						cell.addEventListener("click", load, false)
 						row.appendChild(cell);
+						
 					}
 					
 					gameSurface.appendChild(row);
@@ -25,13 +32,23 @@
 			}
 			
 			function load() {
-				alert(document.grid[0][0]);
+				var coordinates = this.id.substring(this.id.indexOf("-")+1).split("x");
+				var gridRow = coordinates[0] - 1;
+				var gridColumn = coordinates[1] - 1;
+				
+				if (document.grid[gridRow][gridColumn] == "empty") {
+					this.class = "safe";
+					this.style.backgroundColor  = "#FFFFFF";
+				} else {
+					this.class = "lost";
+					this.style.backgroundColor  = "#FF0000";
+				}
 			}
 		</script>
 	</head>
     <body>
 		<div id="title">Minesweeper</div>
-		<table id="gameSurface">
+		<table id="gameSurface" style="border-spacing:0; border-collapse:collapse;">
 			
 		</table>
 	</body>
