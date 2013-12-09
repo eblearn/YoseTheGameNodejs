@@ -28,7 +28,7 @@
 				}
 				
 				var displayedResult = number.number + " = " + primeFactors;
-				resultDiv.innerHTML = resultDiv.innerHTML + displayedResult;
+				resultDiv.innerHTML = displayedResult;
 			}
 		</script>
 	</head>
@@ -40,6 +40,6 @@
 		<div id="enter">
 			<input id="number" type="text"><button id="go" type="button" onclick="decomposeNumbers()">Decomposer ...</button>
 		</div>	
-		<p id="result"></p>
+		<div id="result"></div>
 	</body>
 </html>
