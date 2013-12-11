@@ -27,7 +27,7 @@
 				var resultDiv = document.getElementById("result");
 				if (number.error == undefined) {
 					resultDiv.innerHTML = number.number + " = " + number.decomposition.join(' x ');
-				} else if (number.error == "not a number") {
+				} else if (number.error == "not a number" || number.error == "not an integer > 1") {
 					resultDiv.innerHTML = number.number + " is " + number.error;
 				} else {
 					resultDiv.innerHTML = number.error;

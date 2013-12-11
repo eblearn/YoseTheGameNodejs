@@ -29,6 +29,8 @@ function isValidNumber(numberToValidate) {
 		return false;
 	} else if (numberToValidate > 1000000) {
 		return false;
+	} else if (numberToValidate <= 1) {
+		return false;
 	} else {
 		return true;
 	}
@@ -39,6 +41,8 @@ function getErrorMessage(invalidNumber) {
 		return "not a number";
 	} else if (invalidNumber > 1000000) {
 		return "too big number (>1e6)";
+	} else if (numberToValidate <= 1) {
+		return "not an integer > 1";
 	} else {
 		return true;
 	}
