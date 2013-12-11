@@ -11,8 +11,8 @@
 				
 				xmlHttp = new XMLHttpRequest();
 				
-				xmlhttp.onreadystatechange=function() {
-					if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+				xmlHttp.onreadystatechange=function() {
+					if (xmlHttp.readyState==4 && xmlHttp.status==200) {
 						var number = JSON.parse(xmlHttp.responseText);
 						displayNumber(number);
 					}
@@ -36,7 +36,7 @@
 			Saisissez une série de nombres qui seront décomposés.
 		</div>
 		<div id="enter">
-			<input id="number" type="text"><button id="go" type="button" onclick="displayNumber()">Decomposer ...</button>
+			<input id="number" type="text"><button id="go" type="button" onclick="decomposeNumbers()">Decomposer ...</button>
 		</div>	
 		<div id="result">42 = 2 x 3 x 7</div>
 	</body>
