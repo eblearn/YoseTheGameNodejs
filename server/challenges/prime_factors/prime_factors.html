@@ -10,8 +10,8 @@
 				var url = "/primeFactors?number=" + enteredNumber;
 				
 				xmlHttp = new XMLHttpRequest();
-				xmlHttp.open( "GET", url, false );
-				xmlHttp.send( null );
+				xmlHttp.open("GET", url, false);
+				xmlHttp.send();
 				
 				var number = JSON.parse(xmlHttp.responseText);
 				displayNumber(number);
@@ -19,16 +19,7 @@
 			
 			function displayNumber(number) {
 				var resultDiv = document.getElementById("result");
-				var primeFactors = "";
-				
-				primeFactors = number.decomposition[0].toString();
-				
-				for(i = 1; i < number.decomposition.length; i++) {
-					primeFactors += " x " + number.decomposition[i].toString();
-				}
-				
-				var displayedResult = number.number + " = " + primeFactors;
-				resultDiv.innerHTML = displayedResult;
+				resultDiv.innerHTML = number.number + " = " + number.decomposition.join(' x ');
 			}
 		</script>
 	</head>
@@ -40,6 +31,6 @@
 		<div id="enter">
 			<input id="number" type="text"><button id="go" type="button" onclick="decomposeNumbers()">Decomposer ...</button>
 		</div>	
-		<div id="result">toto</div>
+		<div id="result">42 = 2 x 3 x 7</div>
 	</body>
 </html>
