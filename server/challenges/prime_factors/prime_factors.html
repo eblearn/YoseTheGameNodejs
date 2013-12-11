@@ -21,6 +21,7 @@
 				var resultDiv = document.getElementById("result");
 				resultDiv.innerHTML = number.number + " = " + number.decomposition.join(' x ');
 			}
+			
 		</script>
 	</head>
     <body>
@@ -29,7 +30,7 @@
 			Saisissez une série de nombres qui seront décomposés.
 		</div>
 		<div id="enter">
-			<input id="number" type="text"><button id="go" type="button" onclick="decomposeNumbers()">Decomposer ...</button>
+			<input id="number" type="text"><button id="go" type="button" onclick="javascript:decomposeNumbers()">Decomposer ...</button>
 		</div>	
 		<div id="result">42 = 2 x 3 x 7</div>
 	</body>
