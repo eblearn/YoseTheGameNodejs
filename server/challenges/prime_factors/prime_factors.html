@@ -25,7 +25,11 @@
 			
 			function displayNumber(number) {
 				var resultDiv = document.getElementById("result");
-				resultDiv.innerHTML = number.number + " = " + number.decomposition.join(' x ');
+				if (number.error == undefined) {
+					resultDiv.innerHTML = number.number + " = " + number.decomposition.join(' x ');
+				} else {
+					resultDiv.innerHTML = number.error;
+				}				
 			}
 						
 		</script>
