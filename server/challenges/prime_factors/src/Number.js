@@ -25,6 +25,7 @@ function decomposeNumberWithPrimeFactors(numberToDecompose) {
 }
 
 function isValidNumber(numberToValidate) {
+	
 	if (isNaN(numberToValidate)) {
 		return false;
 	} else if (numberToValidate > 1000000) {
