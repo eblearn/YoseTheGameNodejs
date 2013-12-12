@@ -6,15 +6,22 @@
 			
 			function decomposeNumbers() {
 				var xmlHttp = null;
-				var enteredNumber = document.getElementById("number").value;
-				var url = "/primeFactors?number=" + enteredNumber;
+				var enteredNumbers = "number=" + document.getElementById("number").value.replace(" ","").split(",").join("&number=");				
+							
+				var url = "/primeFactors?" + enteredNumbers;
 				
 				xmlHttp = new XMLHttpRequest();
 				
 				xmlHttp.onreadystatechange=function() {
 					if (xmlHttp.readyState==4 && xmlHttp.status==200) {
-						var number = JSON.parse(xmlHttp.responseText);
-						displayNumber(number);
+						var numbers = JSON.parse(xmlHttp.responseText);
+						
+						if (numbers.length > 1) {
+							
+							displayNumbers(numbers);
+						} else {
+							displayNumber(numbers);
+						}
 					}
 				}
 				
@@ -25,6 +32,7 @@
 			
 			function displayNumber(number) {
 				var resultDiv = document.getElementById("result");
+								
 				if (number.error == undefined) {
 					resultDiv.innerHTML = number.number + " = " + number.decomposition.join(' x ');
 				} else if (number.error == "not a number" || number.error == "not an integer > 1") {
@@ -33,7 +41,30 @@
 					resultDiv.innerHTML = number.error;
 				}				
 			}
-						
+			
+			function displayNumbers(numbers) {
+				var resultDiv = document.getElementById("result");
+				resultDiv.innerHTML = '';
+			
+				var resultList = document.getElementById("results");
+				resultList.innerHTML = '';
+				
+				for (i=0; i < numbers.length; i++) {
+					var listItem = document.createElement("li");
+											
+					if (numbers[i].error == undefined) {
+						listItem.innerHTML = numbers[i].number + " = " + numbers[i].decomposition.join(' x ');
+					} else if (numbers[i].error == "not a number" || numbers[i].error == "not an integer > 1") {
+						listItem.innerHTML = numbers[i].number + " is " + numbers[i].error;
+					} else {
+						listItem.innerHTML = numbers[i].error;
+					}				
+					
+					
+					resultList.appendChild(listItem);
+				}
+				
+			}
 		</script>
 	</head>
     <body>
@@ -45,5 +76,6 @@
 			<input id="number" type="text"><button id="go" type="button" onclick="decomposeNumbers()">Decomposer ...</button>
 		</div>	
 		<div id="result"></div>
+		<ol id="results"><li>Test</li></ol>
 	</body>
 </html>
